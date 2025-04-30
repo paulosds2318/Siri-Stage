@@ -13,5 +13,7 @@ colaborador.
 
 
 git remote add origin https://github.com/LouisLuos/Projeto-CRUD-Python.git
+
 git branch -M main
+
 git push -u origin main
