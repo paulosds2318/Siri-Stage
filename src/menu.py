@@ -1,0 +1,1 @@
+#Interface simples via terminal (Eduardo Henrique): menu principal de navegação entre opções.

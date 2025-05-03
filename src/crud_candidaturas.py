@@ -1,0 +1,1 @@
+#CRUD das candidaturas (Sérgio Gonçalves): aplicar a vagas, ver status, cancelar.
