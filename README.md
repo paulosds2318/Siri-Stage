@@ -1,19 +1,53 @@
+
 # Projeto-CRUD-Python
 CRUD em Python
-Criei o respositório pra gente já começar a produzir os códigos, separei em pastas cada CRUD que será trabalho.
-Qualque dúvida sobre o projeto manda mensagem no grupo
+
+#Branch
+
+1. main
+Propósito: É a ramificação principal e estável.
+
+Regra: Só deve conter código pronto para produção.
 
 
+2. develop
+Propósito: Onde o desenvolvimento contínuo acontece.
+
+Regra: Funciona como uma versão instável, onde são mescladas as features em andamento antes de irem para a main.
 
 
+3. feature/nome-da-funcionalidade
+Propósito: Usado para desenvolver novas funcionalidades ou melhorias.
 
-pra você dar commit ou seja enviar suas alterações você usa essa sequência no terminal, instale o git pra funcionar.
-tem como adicionar colaboradores no código, igual no instagram numa mesma publi, quando criarem a conta me envia pra eu adicionar todo mundo de
-colaborador.
+Exemplo: feature/login, feature/chat-integracao
+
+Fluxo comum: Começa a partir de develop e depois é mesclado de volta quando finalizado.
 
 
-git remote add origin https://github.com/LouisLuos/Projeto-CRUD-Python.git
+4. bugfix/nome-do-bug
+Propósito: Corrigir erros identificados em ambiente de desenvolvimento.
 
-git branch -M main
+Exemplo: bugfix/erro-login, bugfix/filtro-produtos
 
-git push -u origin main
+
+5. hotfix/nome-do-hotfix
+Propósito: Corrigir erros críticos diretamente na produção.
+
+Fluxo: Começa a partir de main e deve ser mesclado de volta em main e develop.
+
+Exemplo: hotfix/seguranca-api
+
+6. release/nome-da-versao
+Propósito: Preparar uma nova versão para produção.
+
+Fluxo: Criada a partir de develop, testada e depois mesclada em main e develop.
+
+Exemplo: release/v1.0.0 (
+
+1 - MAJOR (versão principal)	Muda quando há grandes mudanças que quebram a compatibilidade com versões anteriores. Ex: o sistema muda completamente ou APIs antigas param de funcionar.
+
+0 - MINOR (versão secundária)	Muda quando há funcionalidades novas adicionadas de forma compatível com o que já existia. Ex: você adiciona um novo recurso, mas nada antigo quebra.
+
+0 - PATCH (correções)	Muda quando há correções de bugs ou pequenas melhorias, sem alterar funcionalidades nem quebrar nada.
+    
+)
