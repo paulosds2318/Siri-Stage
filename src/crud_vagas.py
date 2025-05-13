@@ -1,1 +1,1 @@
-#CRUD de vagas (Pedro Marrocos): onde empresas criam, listam, editam e removem vagas.
+# Pedro Marrocos - CRUD de Vagas (empresas criam/editam/excluem/listam vagas)
