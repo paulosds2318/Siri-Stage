@@ -1,1 +1,0 @@
-# Sérgio Gonçalves - CRUD de Candidaturas (candidato aplica, vê status, cancela, etc.)
