@@ -1,6 +1,7 @@
 # Pedro Marrocos - CRUD de Vagas (empresas criam/editam/excluem/listam vagas)
 import json
 import os
+CAMINHO = "vagas.json"
 
 def adcionar_vagas():
     titulo = str(input("Título da vaga: "))
@@ -9,8 +10,18 @@ def adcionar_vagas():
     vaga = {"titulo": titulo, "empresa": empresa, "local": local}
     vagas = carregar_vagas()
     vagas.append (vaga)
-    salvar_vagas = (vagas)
-    print(""✅ Vaga adicionada com sucesso!"")
+    salvar_vagas (vagas)
+    print("✅ Vaga adicionada com sucesso!")
     
-def excluir_vaga():
+def carregar_vagas():
+    if not os.path.exists(CAMINHO):
+        return []
+try:
+    with open(CAMINHO, "r", encoding="utf-8") as arquivo:
+        return json.load(arquivo)
+except (json.JSONDecodeError, IOError):
+    return []
+
+def salvar_vagas():
     
+
