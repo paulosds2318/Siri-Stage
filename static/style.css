@@ -18,7 +18,6 @@
 html, body {
     margin: 0;
     padding: 0;
-    overflow-y: hidden;
 }
 
 body {
@@ -27,6 +26,14 @@ body {
     box-sizing: border-box;
     display: flex;
     justify-content: center;
+}
+
+#body-main-page {
+    overflow-y: hidden;
+}
+
+#body-candidate-page {
+    overflow-y: auto;
 }
 
 .left-container {
@@ -164,9 +171,9 @@ body {
     background-color: var(--color001);
 }
 
-/* Formulário de Cadastro de Candidatos */
+/* Formulário */
 
-.candidate-container {
+.form-container {
     width: 60%;
     display: flex;
     flex-direction: column;
@@ -174,26 +181,26 @@ body {
     align-items: center;
 }
 
-.candidate-header {
+.form-header {
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: .5rem;
 }
 
-.candidate-header h1 {
+.form-header h1 {
     font-size: 1.5rem;
     font-weight: 500;
     margin: 0;
 }
 
-.candidate-header h2 {
+.form-header h2 {
     font-size: 1rem;
     font-weight: 400;
     margin: 0;
 }
 
-.candidate-form {
+.form {
     width: 60%;
     display: flex;
     flex-direction: column;
@@ -264,9 +271,39 @@ body {
     text-decoration: underline;
 }
 
+.back-btn {
+    padding: 1rem;
+    width: 60%;
+}
+
+.back-btn a {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    color: var(--color001);
+    text-decoration: none;
+}
+
+.back-btn img {
+    width: 15px;
+    filter: brightness(0) saturate(100%) invert(65%) sepia(75%) saturate(7212%) hue-rotate(174deg) brightness(98%) contrast(91%);
+}
+
 /* Media Queries */
 
 @media (max-width: 1366px) {
+    #left-container-form-page{
+        overflow-y: hidden;
+        position: fixed;
+        margin-right: 60%;
+    }
+    
+    .form-container {
+        overflow-y: auto;
+        margin-left: 40%;
+        height: 130vh;
+    }
+
     .left-content h1 {
         font-size: 2rem;
     }
@@ -275,5 +312,7 @@ body {
         font-size: 1.2rem;
     }
 
-    .left
+    .image img {
+        width: 350px;
+    }    
 }

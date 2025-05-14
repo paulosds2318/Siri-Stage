@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="../static/style.css">
     <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
 </head>
-<body>
-    <div class="left-container">
+<body id="body-">
+    <div class="left-container" id="left-container-form-page">
         <div class="header">
             <div class="logo">
                 <a href="index.html">
@@ -27,9 +27,9 @@
         </div>
     </div>
 
-    <div class="candidate-container">
-        <form class="candidate-form">
-            <div class="candidate-header">
+    <div class="form-container">
+        <form class="form">
+            <div class="form-header">
                 <h1>Cadastro da Empresa</h1>
                 <h2>Conecte-se com os talentos que vão transformar seu time de tecnologia.</h2>
             </div>
@@ -42,7 +42,7 @@
             <div class="input-item" id="item-side">
                 <div class="input-item">
                     <label for="cnpj">CNPJ*</label>
-                    <input type="text" id="cnpj" placeholder="12.345.678/0001-90">
+                    <input type="text" id="cnpj" placeholder="12.345.678/0001-90" required>
                 </div>
                 <div class="input-item">
                     <label for="endereco">Endereço</label>
@@ -71,9 +71,16 @@
                 <input type="password" id="senhaConfirma" required>
             </div>
 
-            <input type="button" value="Cadastrar" class="register-btn">
+            <button class="register-btn">Cadastrar</button>
             <p class="have-account">Já possui cadastro? <span>Fazer login</span></p>
         </form>
+
+        <div class="back-btn">
+            <a href="index.html">
+                <img src="../assets/left-arrow.png" alt="">
+                <span>Voltar</span>
+            </a>
+        </div>
     </div>
 
     <script src="../static/script.js"></script>
