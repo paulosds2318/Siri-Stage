@@ -55,4 +55,54 @@ def listar_usuario():
     for pessoa in lista_de_usuarios:
         print(f"Nome: {pessoa['Nome']} / Idade: {pessoa['Idade']} / Sexo: {pessoa['Sexo']} / ID: {pessoa['ID']} ")
         print("-"*50)
+    
+
+def editar_usuario():
+    lista_de_usuarios = carregar_usuario()
+    id_usuario_str = input("Digite o ID do usuário que você quer editar: ") 
+    usuario_encontrado = None 
+    indice_usuario = -1      
+
+    for i, usuario in enumerate(lista_de_usuarios):
+        if str(usuario["ID"]) == id_usuario_str: 
+            usuario_encontrado = usuario
+            indice_usuario = i
+            break 
+
+    if usuario_encontrado:
+        print("-" * 30)
+        print("Usuário encontrado:")
+        print(f"Nome: {usuario_encontrado['Nome']}")
+        print(f"Idade: {usuario_encontrado['Idade']}")
+        print(f"Sexo: {usuario_encontrado['Sexo']}")
+        print(f"ID: {usuario_encontrado['ID']}")
+        print("-" * 30)
+
+        campo_para_editar = input("Qual informação você gostaria de editar? (Nome, Idade, Sexo): ").strip().lower()
+
+        if campo_para_editar == "nome":
+            novo_nome = input("Digite o novo nome: ")
+            lista_de_usuarios[indice_usuario]["Nome"] = novo_nome
+            print("Nome atualizado com sucesso!")
+        elif campo_para_editar == "idade":
+            nova_idade_str = input("Digite a nova idade: ")
+            try:
+                nova_idade = int(nova_idade_str)
+                lista_de_usuarios[indice_usuario]["Idade"] = nova_idade
+                print("Idade atualizada com sucesso!")
+            except ValueError:
+                print("Idade inválida. A edição não foi realizada.")
+        elif campo_para_editar == "sexo":
+            novo_sexo = input("Digite o novo sexo: ")
+            lista_de_usuarios[indice_usuario]["Sexo"] = novo_sexo
+            print("Sexo atualizado com sucesso!")
+        else:
+            print("Opção de edição inválida.")
+
+        salvar_json(lista_de_usuarios, caminho_arquivo)
+    else:
+        print("-" * 30)
+        print(f"Não foi encontrado nenhum usuário com o ID: {id_usuario_str}")
+        print("-" * 30)
+
 
