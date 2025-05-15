@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../static/style.css">
     <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
 </head>
-<body id="body-">
+<body>
     <div class="left-container" id="left-container-form-page">
         <div class="header">
             <div class="logo">
@@ -28,7 +28,7 @@
     </div>
 
     <div class="form-container">
-        <form class="form">
+        <form class="form" id="enterprise-form">
             <div class="form-header">
                 <h1>Cadastro da Empresa</h1>
                 <h2>Conecte-se com os talentos que vão transformar seu time de tecnologia.</h2>
@@ -57,7 +57,7 @@
                 </div>
                 <div class="input-item">
                     <label for="tel">Telefone</label>
-                    <input type="tel" id="tel" pattern="^\(\d{2}\)\s\d{4,5}-\d{4}$" placeholder="(81) 91234-5678">
+                    <input type="tel" id="tel" placeholder="(81) 91234-5678">
                 </div>
             </div>
 
@@ -69,6 +69,7 @@
             <div class="input-item">
                 <label for="senhaConfirma">Confirme sua Senha*</label>
                 <input type="password" id="senhaConfirma" required>
+                <label for="senhaConfirma" class="erro-senha">As senhas não coincidem!</label>
             </div>
 
             <button class="register-btn">Cadastrar</button>
