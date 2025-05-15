@@ -32,10 +32,6 @@ body {
     overflow-y: hidden;
 }
 
-#body-candidate-page {
-    overflow-y: auto;
-}
-
 .left-container {
     width: 40%;
     height: 100vh;
@@ -287,6 +283,15 @@ body {
 .back-btn img {
     width: 15px;
     filter: brightness(0) saturate(100%) invert(65%) sepia(75%) saturate(7212%) hue-rotate(174deg) brightness(98%) contrast(91%);
+}
+
+.incorreto {
+    box-shadow: inset 0px 0px 0px 2px red;
+}
+
+.erro-senha {
+    color: red;
+    display: none;
 }
 
 /* Media Queries */
