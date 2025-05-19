@@ -1,48 +1,24 @@
-# Luiz Henrique - CRUD de Candidatos (perfil do aluno: criar/editar/excluir/ver)
+# Luiz Henrique e Pedro Marrocos - CRUD de Candidatos
+
 import json
-from random import randint
 import os
 
-lista_usuarios = []
+CAMINHO = "data/candidatos.json"
 
-def salvar_usuarios_json(nome_arquivo="data/candidatos.json"):
-    try:
-        with open(nome_arquivo, 'r+') as arquivo_json:
-            try:
-                dados_existentes = json.load(arquivo_json)
-            except json.JSONDecodeError:
-                dados_existentes = []
+def carregar_candidatos():
+    if not os.path.exists(CAMINHO):
+        return []
+    with open(CAMINHO, "r") as arquivo:
+        return json.load(arquivo)
 
-            dados_existentes.extend(lista_usuarios)
+def salvar_candidatos(candidatos):
+    with open(CAMINHO, "w") as arquivo:
+        json.dump(candidatos, arquivo, indent=4)
 
-            arquivo_json.seek(0)
-            json.dump(dados_existentes, arquivo_json, indent=4)
-            arquivo_json.truncate()
+def adicionar_candidato(candidato):
+    candidatos = carregar_candidatos()
+    candidatos.append(candidato)
+    salvar_candidatos(candidatos)
 
-        print(f"Dados dos candidatos salvos com sucesso em '{nome_arquivo}'")
-    except Exception as e:
-        print(f"Ocorreu um erro ao salvar o arquivo JSON: {e}")
-
-def menu_inical():
-    print("1 - Criar Usuário")
-    print("2 - Listar Usuário")
-    print("3 - Editar Usuário")
-    print("4 - Deletar Usuário")
-    print("0 - Encerrar o programa")
-
-
-def adicionar_usuario():
-
-    #cria um usuário{} e adiciona a lista de usuário[]
-    usuario = {}
-    usuario["Nome"] = str(input("Nome do usuário: "))
-    usuario["Idade"] = int(input("Digite sua idade: "))
-    usuario["Sexo"] = str(input("Qual seu sexo? "))
-    usuario["ID"] = randint(0, 100000)
-    lista_usuarios.append(usuario.copy())
-    print("-"*50)
-    print(f'Usuário Cadastrado Com Sucesso!')
-    print("-"*50)
-    salvar_usuarios_json()
-
-adicionar_usuario()
+def listar_candidatos():
+    return carregar_candidatos()

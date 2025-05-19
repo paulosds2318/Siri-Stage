@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiriStage | Vagas</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
+</head>
+<body id="body-create-vacancy">
+    <header id="header-create-vacancy">
+        <div class="logo">
+            <img src="../assets/siristage_logo.png" alt="SiriStage Logo">
+        </div>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="" class="create-vacancy-btn">Criar Vaga</a></li>
+                <li><a href="" class="enterprise-profile"><img src="../assets/icon-perfil.png">Perfil da Empresa</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="form-container">
+        <form class="form" id="vacancy-form">
+            <div class="form-header">
+                <h1>Criar Vaga</h1>
+                <h2>Vamos juntos encontrar o talento certo para sua empresa!</h2>
+            </div>
+
+            <div class="input-item">
+                <label for="titulo">Título da Vaga*</label>
+                <input type="text" id="titulo" placeholder="Estágio em Desenvolvimento Front-End" required>
+            </div>
+            
+            <div class="input-item">
+                <label for="descricao">Descrição da Vaga*</label>
+                <textarea id="descricao" name="descricao" rows="6" required></textarea>
+            </div>
+
+            <div class="input-item">
+                <label for="local">Bairro*</label>
+                <input type="text" id="local" placeholder="Boa Viagem" required>
+            </div>
+
+            <div class="input-item" id="input-salario">
+                <label for="salario">Salário*</label>
+                <input type="text" id="salario" placeholder="R$ 0,00" required>
+            </div>
+
+            <button class="register-btn">Criar Vaga</button>
+        </form>
+    </div>
+    </main>
+
+    <script>
+        document.getElementById("salario").addEventListener("input", function(e) {
+            let valor = e.target.value.replace(/\D/g, "");
+            valor = (valor / 100).toFixed(2) + '';
+            valor = valor.replace(".", ",");
+            valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+            e.target.value = "R$ " + valor;
+        });
+
+        document.getElementById("vacancy-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const dados = {
+                titulo: document.getElementById("titulo").value,
+                descricao: document.getElementById("descricao").value,
+                local: document.getElementById("local").value,
+                salario: document.getElementById("salario").value
+            };
+
+            fetch("/criar-vaga", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(dados)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.erro) {
+                    alert(data.erro);
+                } else {
+                    alert(data.mensagem);
+                    window.location.href = "vagas";
+                }
+            })
+            .catch(error => {
+                console.error("Erro:", error);
+                alert("Erro ao criar vaga.");
+            });
+        });
+    </script>
+</body>
+</html>
