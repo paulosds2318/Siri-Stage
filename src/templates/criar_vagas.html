@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SiriStage | Vagas</title>
     <link rel="stylesheet" href="../static/style.css">
-    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='assets/favicon.ico') }}" type="image/x-icon">
 </head>
 <body id="body-create-vacancy">
     <header id="header-create-vacancy">
         <div class="logo">
-            <img src="../assets/siristage_logo.png" alt="SiriStage Logo">
+            <img src="{{ url_for('static', filename='assets/siristage_logo.png') }}" alt="SiriStage Logo">
         </div>
         <nav>
             <ul class="nav-menu">
                 <li><a href="" class="create-vacancy-btn">Criar Vaga</a></li>
-                <li><a href="" class="enterprise-profile"><img src="../assets/icon-perfil.png">Perfil da Empresa</a></li>
+                <li><a href="" class="enterprise-profile"><img src="{{ url_for('static', filename='assets/icon-perfil.png') }}">Perfil da Empresa</a></li>
             </ul>
         </nav>
     </header>

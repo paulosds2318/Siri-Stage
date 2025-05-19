@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SiriStage | Cadastro do Candidato</title>
     <link rel="stylesheet" href="../static/style.css">
-    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='assets/favicon.ico') }}" type="image/x-icon">
 </head>
 <body>
     <div class="left-container" id="left-container-form-page">
         <div class="header">
             <div class="logo">
                 <a href="http://127.0.0.1:5000/">
-                    <img src="../assets/siristage_logo.png" alt="SiriStage Logo">
+                    <img src="{{ url_for('static', filename='assets/siristage_logo.png') }}" alt="SiriStage Logo">
                 </a>
             </div>
         </div>
@@ -23,7 +23,7 @@
         </div>
 
         <div class="image">
-            <img src="../assets/imagem001.png" alt="">
+            <img src="{{ url_for('static', filename='assets/imagem001.png') }}" alt="">
         </div>
     </div>
 
@@ -72,7 +72,7 @@
 
         <div class="back-btn">
             <a href="http://127.0.0.1:5000/">
-                <img src="../assets/left-arrow.png" alt="">
+                <img src="{{ url_for('static', filename='assets/left-arrow.png') }}" alt="">
                 <span>Voltar</span>
             </a>
         </div>
