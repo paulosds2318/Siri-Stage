@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, jsonify
 from crud_candidatos import adicionar_candidato
-from crud_empresas import adicionar_empresa
+from crud_empresas import adicionar_empresa, carregar_empresas
 from crud_vagas import adicionar_vaga
 
 app = Flask(__name__)
@@ -47,6 +47,12 @@ def cadastro_empresa():
 
     adicionar_empresa(empresa)
     return jsonify({"mensagem": "Empresa cadastrada com sucesso!"}), 200
+
+@app.route('/perfil-empresa')
+def perfil_empresa():
+    empresas = carregar_empresas()
+    empresa = empresas[-1] if empresas else None
+    return render_template("perfil_empresa.html", empresa=empresa)
 
 @app.route('/criar-vagas')
 def vagas():

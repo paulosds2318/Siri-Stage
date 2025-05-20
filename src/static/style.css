@@ -169,10 +169,12 @@ body {
 
 /* Formulário */
 
-main {
-    height: calc(100vh - 94px);
+#vacancy-form-container {
+    width: 100%;
+    height: calc(100vh - 82px);
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .form-container {
@@ -300,19 +302,21 @@ main {
     display: none;
 }
 
-/* Página de Criação de Vagas */
+/* Definição Páginas com Menu Superior */
 
-#body-create-vacancy {
+.body-vertical {
     flex-direction: column;
 }
 
-#header-create-vacancy {
+.header-horizontal {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--color001);
 }
+
+/* Página de Criação de Vagas */
 
 .nav-menu {
     display: flex;
@@ -373,6 +377,107 @@ main {
 .input-item textarea:focus {
     outline: none;
     box-shadow: inset 0px 0px 0px 2px var(--color001);
+}
+
+/* Perfil da Empresa */
+
+#enterprise-profile-container {
+    width: 100%;
+    height: calc(100vh - 82px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.enterprise-profile-container {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    border-radius: .5rem;
+}
+
+.enterprise-profile-header h1{
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.enterprise-profile-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.enterprise-profile-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: .3rem;
+}
+
+.enterprise-profile-item h2 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+.enterprise-profile-item p {
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+.enterprise-profile-actions {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+}
+
+.enterprise-profile-actions button {
+    font-size: 1rem;
+    font-weight: 400;
+    border: none;
+    transition: all .3s ease;
+}
+
+.edit-profile-btn {
+    cursor: pointer;
+    background-color: var(--color001);
+    color: var(--color006);
+    padding: 1rem;
+    border-radius: .5rem;
+}
+
+.edit-profile-btn:hover {
+    background-color: var(--color006);
+    color: var(--color001);
+    box-shadow: inset 0px 0px 0px 2px var(--color001);
+    transform: translate(-2px, -2px);
+}
+
+.delete-profile-btn {
+    cursor: pointer;
+    background-color: var(--color006);
+    color: red;
+    box-shadow: inset 0px 0px 0px 2px red;
+    padding: 1rem;
+    border-radius: .5rem;
+}
+
+.delete-profile-btn:hover {
+    background-color: red;
+    color: var(--color006);
+    transform: translate(-2px, -2px);
 }
 
 /* Media Queries */

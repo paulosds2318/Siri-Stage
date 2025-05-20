@@ -22,3 +22,31 @@ def adicionar_empresa(empresa):
 
 def listar_empresas():
     return carregar_empresas()
+
+def obter_empresa_por_indice(indice):
+    empresas = carregar_empresas()
+    if 0 <= indice < len(empresas):
+        return empresas[indice]
+    return None
+
+def atualizar_empresa(indice, empresa_atualizada):
+    empresas = carregar_empresas()
+    if 0 <= indice < len(empresas):
+        empresas[indice] = empresa_atualizada
+        salvar_empresas(empresas)
+        return True
+    return False
+
+def remover_empresa(indice):
+    empresas = carregar_empresas()
+    if 0 <= indice < len(empresas):
+        empresas.pop(indice)
+        salvar_empresas(empresas)
+        return True
+    return False
+
+def obter_empresa_mais_recente():
+    empresas = carregar_empresas()
+    if empresas:
+        return empresas[-1]
+    return None
