@@ -1,1 +1,0 @@
-#Lê e grava dados nos arquivos JSON (Paulo Marrocos): centraliza a lógica de salvar e carregar dados.

@@ -22,3 +22,31 @@ def adicionar_candidato(candidato):
 
 def listar_candidatos():
     return carregar_candidatos()
+
+def obter_candidato_por_indice(indice):
+    candidatos = carregar_candidatos()
+    if 0 <= indice < len(candidatos):
+        return candidatos[indice]
+    return None
+
+def atualizar_candidato(indice, candidato_atualizado):
+    candidatos = carregar_candidatos()
+    if 0 <= indice < len(candidatos):
+        candidatos[indice] = candidato_atualizado
+        salvar_candidatos(candidatos)
+        return True
+    return False
+
+def remover_candidato(indice):
+    candidatos = carregar_candidatos()
+    if 0 <= indice < len(candidatos):
+        candidatos.pop(indice)
+        salvar_candidatos(candidatos)
+        return True
+    return False
+
+def obter_candidato_mais_recente():
+    candidatos = carregar_candidatos()
+    if candidatos:
+        return candidatos[-1]
+    return None

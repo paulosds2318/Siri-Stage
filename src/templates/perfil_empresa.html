@@ -49,15 +49,34 @@
                     </div>
                 </div>
                 <div class="enterprise-profile-actions">
-                    <button class="edit-profile-btn">Editar Perfil</button>
-                    <button class="delete-profile-btn">Excluir Perfil</button>
+                    <button class="edit-enterprise-btn">Editar Perfil</button>
+                    <button class="delete-enterprise-btn" id="delete-enterprise-btn">Excluir Perfil</button>
                 </div>
             </div>
         </div>
     </main>
 
     <script>
-
+        document.getElementById("delete-enterprise-btn").addEventListener("click", function() {
+            if (confirm("Tem certeza de que deseja excluir esta empresa?")) {
+                fetch("/excluir-empresa", {
+                    method: "POST"
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.mensagem) {
+                        alert(data.mensagem);
+                        window.location.href = "/";
+                    } else {
+                        alert(data.error || "Erro ao excluir o perfil.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Erro:", error);
+                    alert("Erro ao excluir o perfil.");
+                });
+            }
+        });
     </script>
 </body>
 </html>
