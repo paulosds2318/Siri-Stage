@@ -16,6 +16,10 @@
     --font001: "Ubuntu", sans-serif;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 html, body {
     margin: 0;
     padding: 0;
@@ -24,7 +28,6 @@ html, body {
 body {
     font-family: var(--font001);
     background-color: var(--color006);
-    box-sizing: border-box;
     display: flex;
     justify-content: center;
 }
@@ -322,6 +325,7 @@ body {
 }
 
 .nav-menu a {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -598,6 +602,135 @@ body {
     background-color: red;
     color: var(--color006);
     transform: translate(-2px, -2px);
+}
+
+/* Página de Vagas */
+
+.vacancy-list-container {
+    width: 100%;
+    height: auto;
+    padding: 2rem;
+}
+
+.vacancy-list-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.vacancy-list-header p {
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+}
+
+.vacancy-list-header p a {
+    text-decoration: none;
+    color: rgb(133, 133, 133);
+    font-size: 1rem;
+    font-weight: 400;
+    transition: all .3s ease;
+}
+
+.vacancy-list-header p a:hover {
+    color: black;
+}
+
+.vacancy-list-header p span {
+    color: black;
+}
+
+.vacancy-list-header h1 {
+    font-size: 2rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.vacancy-list-header h2 {
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+.vacancy-list-container hr {
+    margin: 2rem 0 2rem 0;
+}
+
+.vacancy-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.vacancy-item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+    border-radius: .5rem;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.1);
+}
+
+.vacancy-item h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.vacancy-item h3 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin: 0;
+    color: rgb(133, 133, 133);
+}
+
+.vacancy-item p {
+    margin: 0;
+}
+
+.vacancy-details {
+    display: flex;
+    gap: 1rem;
+}
+
+.vacancy-details p {
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.vacancy-details img {
+    width: 20px;
+}
+
+.vacancy-item button {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: .5rem;
+    background-color: var(--color001);
+    color: var(--color006);
+    font-size: 1rem;
+    font-family: var(--font001);
+    font-weight: 400;
+    transition: all .3s ease;
+}
+
+.vacancy-item button:hover {
+    cursor: pointer;
+    background-color: var(--color006);
+    color: var(--color001);
+    box-shadow: inset 0px 0px 0px 2px var(--color001);
+}
+
+.no-vacancies {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 400;
+    font-style: italic;
 }
 
 /* Media Queries */

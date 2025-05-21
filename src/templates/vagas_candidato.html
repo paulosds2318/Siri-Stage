@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SiriStage | Criar Vaga</title>
+    <title>SiriStage | Vagas</title>
     <link rel="stylesheet" href="../static/style.css">
     <link rel="shortcut icon" href="{{ url_for('static', filename='assets/favicon.ico') }}" type="image/x-icon">
 </head>
@@ -14,15 +14,43 @@
         </div>
         <nav>
             <ul class="nav-menu">
-                <li><a href="/vagas-candidato" class="create-vacancy-btn">Ver Vagas</a></li>
+                <li><a href="/vagas" class="create-vacancy-btn">Ver Vagas</a></li>
                 <li><a href="/perfil-candidato" class="enterprise-profile"><img src="{{ url_for('static', filename='assets/icon-perfil.png') }}">Perfil do Candidato</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <h1>Aqui vai as vagas...</h1>
-    </main>
+        <div class="vacancy-list-container">
+            <div class="vacancy-list-header">
+                <p><a href="/">Home</a> • <span>Vagas</span></p>
+                <h1>Vagas</h1>
+                <h2>{{ vagas|length }} vaga(s) encontrada(s)</h2>
+            </div>
+
+            <hr>
+
+            <div class="vacancy-list">
+                {% if vagas %}
+                    {% for vaga in vagas %}
+                <div class="vacancy-item">
+                    <h2>{{ vaga.titulo }}</h2>
+                    <h3>{{ vaga.empresa }}</h3>
+                    <p>{{ vaga.descricao }}</p>
+                    <div class="vacancy-details">
+                        <p><img src="{{ url_for('static', filename='assets/pin.png') }}" alt="">{{ vaga.local }}</p>
+                        <p><img src="{{ url_for('static', filename='assets/dolar.png') }}" alt="">{{ vaga.salario }}</p>
+                    </div>
+                    <div>
+                        <button>Candidatar-se</button>
+                    </div>
+                </div>
+                {% endfor %}
+                    {% else %}
+                        <p class="no-vacancies">Nenhuma vaga encontrada.</p>
+                {% endif %}
+            </div>
+            </main>
 
     <script>
 

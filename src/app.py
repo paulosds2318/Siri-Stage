@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, jsonify
 from crud_candidatos import adicionar_candidato, carregar_candidatos, remover_candidato
 from crud_empresas import adicionar_empresa, carregar_empresas, remover_empresa
-from crud_vagas import adicionar_vaga   
+from crud_vagas import adicionar_vaga, carregar_vagas
 
 app = Flask(__name__)
 
@@ -29,10 +29,6 @@ def cadastro_candidato():
 
     adicionar_candidato(candidato) # Adiciona o candidato ao arquivo JSON
     return jsonify({"mensagem": "Usuário cadastrado com sucesso!"}), 200
-
-@app.route('/vagas-candidato') # Ler Vagas
-def vagas_candidato():
-    return render_template("vagas_candidato.html")
 
 @app.route('/perfil-candidato') # Ler Candidato
 def perfil_candidato():
@@ -98,15 +94,25 @@ def vagas():
 def criar_vaga():
     dados = request.json
 
+    empresas = carregar_empresas()
+    nome_empresa = empresas[-1]["nome"] if empresas else None
+
     vaga = {
         "titulo": dados.get("titulo"),
         "descricao": dados.get("descricao"),
         "local": dados.get("local"),
-        "salario": dados.get("salario")
+        "salario": dados.get("salario"),
+        "empresa": nome_empresa
     }
 
     adicionar_vaga(vaga)
     return jsonify({"mensagem": "Vaga criada com sucesso!"}), 200
+
+@app.route('/vagas')
+def listar_vagas():
+    vagas = carregar_vagas()
+    return render_template("vagas_candidato.html", vagas=vagas)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
