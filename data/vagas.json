@@ -1,23 +1,10 @@
 [
     {
-        "titulo": "Est\u00e1gio em Desenvolvimento Front-End",
-        "descricao": "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        "local": "Boa Viagem",
-        "salario": "R$ 950,00",
-        "empresa": "Accenture"
-    },
-    {
-        "titulo": "Est\u00e1gio em Desenvolvimento Front-End",
-        "descricao": "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        "local": "Boa Viagem",
-        "salario": "R$ 950,00",
-        "empresa": "Accenture"
-    },
-    {
-        "titulo": "Est\u00e1gio em Desenvolvimento Front-End",
-        "descricao": "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        "local": "Boa Viagem",
-        "salario": "R$ 800,00",
-        "empresa": "Accenture"
+       "titulo": "Est\u00e1gio em Desenvolvimento Front-End",
+        "descricao": "lorem",
+        "local": "Recife Antigo",
+        "salario": "R$ 1.300,00",
+        "empresa": "Neurotech",
+        "id": "74804013-7bfe-42f0-9062-fc5bdc8335f9"
     }
 ]

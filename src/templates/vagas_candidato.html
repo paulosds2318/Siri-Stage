@@ -34,15 +34,17 @@
                 {% if vagas %}
                     {% for vaga in vagas %}
                 <div class="vacancy-item">
-                    <h2>{{ vaga.titulo }}</h2>
-                    <h3>{{ vaga.empresa }}</h3>
-                    <p>{{ vaga.descricao }}</p>
-                    <div class="vacancy-details">
-                        <p><img src="{{ url_for('static', filename='assets/pin.png') }}" alt="">{{ vaga.local }}</p>
-                        <p><img src="{{ url_for('static', filename='assets/dolar.png') }}" alt="">{{ vaga.salario }}</p>
+                    <div class="vacancy-info">
+                        <h2>{{ vaga.titulo }}</h2>
+                        <h3>{{ vaga.empresa }}</h3>
+                        <p>{{ vaga.descricao }}</p>
+                        <div class="vacancy-details">
+                            <p><img src="{{ url_for('static', filename='assets/pin.png') }}" alt="">{{ vaga.local }}</p>
+                            <p><img src="{{ url_for('static', filename='assets/dolar.png') }}" alt="">{{ vaga.salario }}</p>
+                        </div>
                     </div>
-                    <div>
-                        <button>Candidatar-se</button>
+                    <div class="vacancy-actions">
+                        <button class="apply-btn">Candidatar-se</button>
                     </div>
                 </div>
                 {% endfor %}
@@ -50,7 +52,8 @@
                         <p class="no-vacancies">Nenhuma vaga encontrada.</p>
                 {% endif %}
             </div>
-            </main>
+        </div>
+    </main>
 
     <script>
 

@@ -2,6 +2,7 @@
 
 import json
 import os
+import uuid
 
 CAMINHO = "data/vagas.json"
 
@@ -17,8 +18,19 @@ def salvar_vagas(vagas):
 
 def adicionar_vaga(vaga):
     vagas = carregar_vagas()
+    vaga["id"] = str(uuid.uuid4())  # Gera um ID único para a vaga
     vagas.append(vaga)
     salvar_vagas(vagas)
 
 def listar_vagas():
     return carregar_vagas()
+
+def remover_vaga(vaga_id):
+    vagas = carregar_vagas()
+    vagas_filtradas = [vaga for vaga in vagas if str(vaga.get("id")) != str(vaga_id)] # Filtra as vagas que não têm o ID fornecido
+
+    if len(vagas) == len(vagas_filtradas):
+        return False
+    
+    salvar_vagas(vagas_filtradas)
+    return True

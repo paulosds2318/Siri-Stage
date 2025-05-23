@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, jsonify
 from crud_candidatos import adicionar_candidato, carregar_candidatos, remover_candidato
 from crud_empresas import adicionar_empresa, carregar_empresas, remover_empresa
-from crud_vagas import adicionar_vaga, carregar_vagas
+from crud_vagas import adicionar_vaga, carregar_vagas, remover_vaga
 
 app = Flask(__name__)
 
@@ -113,6 +113,28 @@ def listar_vagas():
     vagas = carregar_vagas()
     return render_template("vagas_candidato.html", vagas=vagas)
 
+@app.route('/minhas-vagas')
+def minhas_vagas():
+    empresas = carregar_empresas()
+    if not empresas:
+        return "Nenhuma empresa cadastrada.", 404
+
+    nome_empresa = empresas[-1]["nome"]  # Pega o nome da última empresa
+
+    todas_vagas = carregar_vagas()
+    minhas_vagas = [vaga for vaga in todas_vagas if vaga.get("empresa") == nome_empresa]
+
+    return render_template('vagas_empresa.html', vagas=minhas_vagas, nome_empresa=nome_empresa)
+
+@app.route('/excluir-vaga', methods=['POST'])
+def excluir_vaga():
+    dados = request.get_json()
+    vaga_id = dados.get('id')
+
+    if remover_vaga(vaga_id):
+        return jsonify({'mensagem': 'Vaga excluída com sucesso!'}), 200
+    else:
+        return jsonify({'erro': 'Vaga não encontrada.'}), 404
 
 if __name__ == '__main__':
     app.run(debug=True)

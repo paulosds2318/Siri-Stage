@@ -14,5 +14,21 @@
         "email": "accenture@gmail.com",
         "telefone": "81912345678",
         "senha": "123"
+    },
+    {
+        "nome": "Neurotech",
+        "cnpj": "05.359.081/0001-34",
+        "endereco": "R. de S\u00e3o Jorge, 240",
+        "email": "neurotech@gmail.com",
+        "telefone": "81912345678",
+        "senha": "123"
+    },
+    {
+        "nome": "Accenture",
+        "cnpj": "12.345.678/0001-90",
+        "endereco": "Avenida Alfredo Lisboa, 12",
+        "email": "accenture@gmail.com",
+        "telefone": "81912345678",
+        "senha": "123"
     }
 ]

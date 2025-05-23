@@ -14,7 +14,10 @@
         </div>
         <nav>
             <ul class="nav-menu">
-                <li><a href="/criar-vagas" class="create-vacancy-btn">Criar Vaga</a></li>
+                <div class="nav-menu-left">
+                    <li><a href="/minhas-vagas" class="my-vacancies-btn">Minhas Vagas</a></li>
+                    <li><a href="/criar-vagas" class="create-vacancy-btn">Criar Vaga</a></li>
+                </div>
                 <li><a href="/perfil-empresa" class="enterprise-profile"><img src="{{ url_for('static', filename='assets/icon-perfil.png') }}">Perfil da Empresa</a></li>
             </ul>
         </nav>
