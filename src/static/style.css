@@ -533,6 +533,54 @@ nav {
     transform: translate(-2px, -2px);
 }
 
+/* Edição de perfil */
+
+#enterprise-edit-profile-container {
+    width: 100%;
+    height: calc(100vh);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.enterprise-profile-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.enterprise-profile-item input {
+    padding: 1rem;
+    border: none;
+    border-radius: .5rem;
+    transition: all .3s ease;
+}
+
+.enterprise-profile-item input:focus {
+    outline: none;
+    box-shadow: inset 0px 0px 0px 2px var(--color001);
+}
+
+.save-edits-btn {
+    cursor: pointer;
+    background-color: var(--color001);
+    color: var(--color006);
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: .5rem;
+    font-size: 1rem;
+    font-weight: 400;
+    border: none;
+    transition: all .3s ease;
+}
+
+.save-edits-btn:hover {
+    background-color: var(--color006);
+    color: var(--color001);
+    box-shadow: inset 0px 0px 0px 2px var(--color001);
+    transform: translate(-2px, -2px);
+}
+
 /* Perfil do Candidato */
 
 #candidate-profile-container {

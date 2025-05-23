@@ -50,3 +50,11 @@ def obter_empresa_mais_recente():
     if empresas:
         return empresas[-1]
     return None
+
+def editar_empresa(novos_dados):
+    empresas = carregar_empresas() # Carrega as empresas
+    if empresas: # Verifica se há empresas cadastradas
+        empresas[-1] = novos_dados # Atualiza a última empresa cadastrada
+        salvar_empresas(empresas) # Salva as alterações
+        return True
+    return False

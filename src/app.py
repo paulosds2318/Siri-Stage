@@ -1,6 +1,6 @@
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template, jsonify, redirect
 from crud_candidatos import adicionar_candidato, carregar_candidatos, remover_candidato
-from crud_empresas import adicionar_empresa, carregar_empresas, remover_empresa
+from crud_empresas import adicionar_empresa, carregar_empresas, remover_empresa, editar_empresa
 from crud_vagas import adicionar_vaga, carregar_vagas, remover_vaga
 
 app = Flask(__name__)
@@ -83,6 +83,30 @@ def excluir_empresa():
         return jsonify({"mensagem": "Empresa excluída com sucesso!"}), 200
     else:
         return jsonify({"mensagem": "Erro ao excluir a empresa."}), 400
+    
+@app.route('/editar-empresa', methods=['GET', 'POST'])
+def editar_empresa_view():
+    empresas = carregar_empresas()
+    if not empresas:
+        return redirect('/')  # Se não tiver empresa, volta pra home
+
+    empresa = empresas[-1]  # A última empresa cadastrada
+
+    if request.method == 'POST':
+        dados = request.form
+
+        novos_dados = {
+            "nome": dados.get("nome"),
+            "cnpj": dados.get("cnpj"),
+            "endereco": dados.get("endereco"),
+            "email": dados.get("email"),
+            "telefone": dados.get("telefone")
+        }
+
+        editar_empresa(novos_dados)
+        return redirect('/perfil-empresa')
+
+    return render_template('editar_empresa.html', empresa=empresa)
 
 # Vagas
 

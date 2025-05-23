@@ -24,66 +24,40 @@
     </header>
 
     <main>
-        <div id="enterprise-profile-container">
+        <div id="enterprise-edit-profile-container">
             <div class="enterprise-profile-container">
                 <div class="enterprise-profile-header">
-                    <h1>Perfil da Empresa</h1>
+                    <h1>Editar Empresa</h1>
                 </div>
-                <div class="enterprise-profile-content">
+                <form method="post" class="enterprise-profile-content">
                     <div class="enterprise-profile-item">
                         <h2>Nome da Empresa</h2>
-                        <p>{{ empresa.nome }}</p>
+                        <input type="text" name="nome" value="{{ empresa.nome }}"/>
                     </div>
                     <div class="enterprise-profile-item">
                         <h2>CNPJ</h2>
-                        <p>{{ empresa.cnpj }}</p>
+                        <input type="text" name="cnpj" value="{{ empresa.cnpj }}"/>
                     </div>
                     <div class="enterprise-profile-item">
                         <h2>Endereço</h2>
-                        <p>{{ empresa.endereco }}</p>
+                        <input type="text" name="endereco" value="{{ empresa.endereco }}"/>
                     </div>
                     <div class="enterprise-profile-item">
                         <h2>E-mail</h2>
-                        <p>{{ empresa.email }}</p>
+                        <input type="email" name="email" value="{{ empresa.email }}"/>
                     </div>
                     <div class="enterprise-profile-item">
                         <h2>Telefone</h2>
-                        <p>{{ empresa.telefone }}</p>
+                        <input type="tel" name="telefone" value="{{ empresa.telefone }}"/>
                     </div>
-                </div>
-                <div class="enterprise-profile-actions">
-                    <button class="edit-enterprise-btn" id="edit-enterprise-btn">Editar Perfil</button>
-                    <button class="delete-enterprise-btn" id="delete-enterprise-btn">Excluir Perfil</button>
-                </div>
+                    <button type="submit" class="save-edits-btn">Salvar Alterações</button>
+                </form>
             </div>
         </div>
     </main>
 
     <script>
-        document.getElementById("delete-enterprise-btn").addEventListener("click", function() {
-            if (confirm("Tem certeza de que deseja excluir esta empresa?")) {
-                fetch("/excluir-empresa", {
-                    method: "POST"
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.mensagem) {
-                        alert(data.mensagem);
-                        window.location.href = "/";
-                    } else {
-                        alert(data.error || "Erro ao excluir o perfil.");
-                    }
-                })
-                .catch(error => {
-                    console.error("Erro:", error);
-                    alert("Erro ao excluir o perfil.");
-                });
-            }
-        });
-
-        document.getElementById("edit-enterprise-btn").addEventListener("click", function() {
-            window.location.href = "/editar-empresa";
-        });
+        
     </script>
 </body>
 </html>
