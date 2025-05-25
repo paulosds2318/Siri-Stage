@@ -424,6 +424,8 @@ nav {
     border: none;
     border-radius: .5rem;
     padding: 1rem;
+    font-family: var(--font001);
+    font-weight: 400;
     transition: all .3s ease;
 }
 
@@ -537,7 +539,7 @@ nav {
 
 #enterprise-edit-profile-container {
     width: 100%;
-    height: calc(100vh);
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -557,6 +559,108 @@ nav {
 }
 
 .enterprise-profile-item input:focus {
+    outline: none;
+    box-shadow: inset 0px 0px 0px 2px var(--color001);
+}
+
+#candidate-edit-profile-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.candidate-profile-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.candidate-profile-item input {
+    padding: 1rem;
+    border: none;
+    border-radius: .5rem;
+    transition: all .3s ease;
+}
+
+.candidate-profile-item input:focus {
+    outline: none;
+    box-shadow: inset 0px 0px 0px 2px var(--color001);
+}
+
+#vacancy-edit-container {
+    width: 100%;
+    height: 125vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vacancy-edit-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    border-radius: .5rem;
+    padding: 2rem;
+    gap: 2rem;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.1);
+}
+
+.vacancy-edit-header h1 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.vacancy-edit-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.vacancy-edit-item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+}
+
+.vacancy-edit-item h2 {
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.vacancy-edit-item input {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: .5rem;
+    transition: all .3s ease;
+}
+
+.vacancy-edit-item input:focus {
+    outline: none;
+    box-shadow: inset 0px 0px 0px 2px var(--color001);
+}
+
+.vacancy-edit-item textarea {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: .5rem;
+    font-family: var(--font001);
+    font-weight: 400;
+    transition: all .3s ease;
+}
+
+.vacancy-edit-item textarea:focus {
     outline: none;
     box-shadow: inset 0px 0px 0px 2px var(--color001);
 }

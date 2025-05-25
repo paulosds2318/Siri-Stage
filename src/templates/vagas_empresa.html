@@ -47,7 +47,7 @@
                         </div>
                     </div>
                     <div class="vacancy-actions">
-                        <button class="edit-vacancy-btn">Editar Vaga</button>
+                        <button class="edit-vacancy-btn" data-id="{{ vaga.id }}">Editar Vaga</button>
                         <button class="delete-vacancy-btn" data-id="{{ vaga.id }}">Excluir Vaga</button>
                     </div>
                 </div>
@@ -89,6 +89,12 @@
             });
         });
 
+        document.querySelectorAll('.edit-vacancy-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const vagaId = this.dataset.id;
+                window.location.href = `/editar-vaga/${vagaId}`;
+            });
+        });
 
     </script>
 </body>

@@ -50,3 +50,11 @@ def obter_candidato_mais_recente():
     if candidatos:
         return candidatos[-1]
     return None
+
+def editar_candidato(novos_dados):
+    candidatos = carregar_candidatos() # Carrega os candidatos
+    if candidatos: # Verifica se há candidatos cadastrados
+        candidatos[-1] = novos_dados # Atualiza o último candidato cadastrado
+        salvar_candidatos(candidatos) # Salva as alterações
+        return True
+    return False

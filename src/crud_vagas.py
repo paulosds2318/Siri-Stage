@@ -34,3 +34,19 @@ def remover_vaga(vaga_id):
     
     salvar_vagas(vagas_filtradas)
     return True
+
+def editar_vaga(vaga_id, novos_dados):
+    vagas = carregar_vagas()
+    vaga_encontrada = False
+
+    for vaga in vagas:
+        if vaga["id"] == vaga_id:
+            vaga_encontrada = True
+            vaga.update(novos_dados)
+            break
+    
+    if vaga_encontrada:
+        salvar_vagas(vagas)
+        return True
+    else:
+        return False

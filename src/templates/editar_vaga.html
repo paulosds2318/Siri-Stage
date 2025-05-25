@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiriStage | Perfil da Empresa</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='assets/favicon.ico') }}" type="image/x-icon">
+</head>
+<body class="body-vertical">
+    <header class="header-horizontal">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='assets/siristage_logo.png') }}" alt="SiriStage Logo">
+        </div>
+        <nav>
+            <ul class="nav-menu">
+                <div class="nav-menu-left">
+                    <li><a href="/minhas-vagas" class="my-vacancies-btn">Minhas Vagas</a></li>
+                    <li><a href="/criar-vagas" class="create-vacancy-btn">Criar Vaga</a></li>
+                </div>
+                <li><a href="/perfil-empresa" class="enterprise-profile"><img src="{{ url_for('static', filename='assets/icon-perfil.png') }}">Perfil da Empresa</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div id="vacancy-edit-container">
+            <div class="vacancy-edit-container">
+                <div class="vacancy-edit-header">
+                    <h1>Editar Vaga</h1>
+                </div>
+                <form method="post" class="vacancy-edit-content">
+                    <div class="vacancy-edit-item">
+                        <h2>Título da Vaga</h2>
+                        <input type="text" name="titulo" value="{{ vaga.titulo }}"/>
+                    </div>
+                    <div class="vacancy-edit-item">
+                        <h2>Descrição</h2>
+                        <textarea name="descricao" rows="7">{{ vaga.descricao }}</textarea>
+                    </div>
+                    <div class="vacancy-edit-item">
+                        <h2>Bairro</h2>
+                        <input type="text" name="local" value="{{ vaga.local }}"/>
+                    </div>
+                    <div class="vacancy-edit-item">
+                        <h2>Salário</h2>
+                        <input type="text" name="salario" value="{{ vaga.salario }}"/>
+                    </div>
+                    <button type="submit" class="save-edits-btn">Salvar Alterações</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        
+    </script>
+</body>
+</html>

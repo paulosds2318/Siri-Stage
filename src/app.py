@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, jsonify, redirect
-from crud_candidatos import adicionar_candidato, carregar_candidatos, remover_candidato
+from crud_candidatos import adicionar_candidato, carregar_candidatos, remover_candidato, editar_candidato
 from crud_empresas import adicionar_empresa, carregar_empresas, remover_empresa, editar_empresa
-from crud_vagas import adicionar_vaga, carregar_vagas, remover_vaga
+from crud_vagas import adicionar_vaga, carregar_vagas, remover_vaga, editar_vaga
 
 app = Flask(__name__)
 
@@ -45,6 +45,28 @@ def excluir_candidato():
         return jsonify({"mensagem": "Candidato excluído com sucesso!"}), 200
     else:
         return jsonify({"mensagem": "Erro ao excluir o candidato."}), 400
+
+@app.route('/editar-candidato', methods=['GET', 'POST'])
+def editar_candidato_view():
+    candidatos = carregar_candidatos()
+    if not candidatos:
+        return redirect('/')
+    
+    candidato = candidatos[-1] 
+    if request.method == 'POST':
+        dados = request.form
+
+        novos_dados = {
+            "nome": dados.get("nome"),
+            "email": dados.get("email"),
+            "telefone": dados.get("telefone"),
+            "curso": dados.get("curso")
+        }
+
+        editar_candidato(novos_dados)
+        return redirect('/perfil-candidato')
+    
+    return render_template('editar_candidato.html', candidato=candidato)
 
 # Empresas
 
@@ -159,6 +181,29 @@ def excluir_vaga():
         return jsonify({'mensagem': 'Vaga excluída com sucesso!'}), 200
     else:
         return jsonify({'erro': 'Vaga não encontrada.'}), 404
+    
+@app.route('/editar-vaga/<vaga_id>', methods=['GET', 'POST'])
+def editar_vaga_view(vaga_id):
+    vagas = carregar_vagas()
+    vaga = next((vaga for vaga in vagas if vaga.get("id") == vaga_id), None)
+
+    if not vaga:
+        return "Vaga não encontrada.", 404
+
+    if request.method == 'POST':
+        dados = request.form
+
+        novos_dados = {
+            "titulo": dados.get("titulo"),
+            "descricao": dados.get("descricao"),
+            "local": dados.get("local"),
+            "salario": dados.get("salario")
+        }
+
+        editar_vaga(vaga_id, novos_dados)
+        return redirect('/minhas-vagas')
+
+    return render_template('editar_vaga.html', vaga=vaga)
 
 if __name__ == '__main__':
     app.run(debug=True)

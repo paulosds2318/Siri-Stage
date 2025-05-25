@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiriStage | Perfil do Candidato</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='assets/favicon.ico') }}" type="image/x-icon">
+</head>
+<body class="body-vertical">
+    <header class="header-horizontal">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='assets/siristage_logo.png') }}" alt="SiriStage Logo">
+        </div>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="/vagas" class="create-vacancy-btn">Ver Vagas</a></li>
+                <li><a href="/perfil-candidato" class="enterprise-profile"><img src="{{ url_for('static', filename='assets/icon-perfil.png') }}">Perfil do Candidato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div id="candidate-edit-profile-container">
+            <div class="candidate-profile-container">
+                <div class="candidate-profile-header">
+                    <h1>Editar Candidato</h1>
+                </div>
+                <form method="post" class="candidate-profile-content">
+                    <div class="candidate-profile-item">
+                        <h2>Nome do Candidato</h2>
+                        <input type="text" name="nome" value="{{ candidato.nome }}"/>
+                    </div>
+                    <div class="candidate-profile-item">
+                        <h2>E-mail</h2>
+                        <input type="email" name="email" value="{{ candidato.email }}"/>
+                    </div>
+                    <div class="candidate-profile-item">
+                        <h2>Telefone</h2>
+                        <input type="tel" name="telefone" value="{{ candidato.telefone }}"/>
+                    </div>
+                    <div class="candidate-profile-item">
+                        <h2>Curso</h2>
+                        <input type="text" name="curso" value="{{ candidato.curso }}"/>
+                    </div>
+                    <button type="submit" class="save-edits-btn">Salvar Alterações</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        
+    </script>
+</body>
+</html>
