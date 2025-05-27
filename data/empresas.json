@@ -1,10 +1,88 @@
 [
     {
-        "id": 1,
-        "nome": "Tech Solutions LTDA",
-        "cnpj": "12.345.678/0001-99",
-        "email": "contato@techsolutions.com",
-        "telefone": "(81) 99999-1234",
-        "endereco": "Rua das Inovações, 123 - Recife/PE"
+        "nome": "Accenture",
+        "cnpj": "12.345.678/0001-90",
+        "endereco": "Avenida Alfredo Lisboa, 12",
+        "email": "accenture@gmail.com",
+        "telefone": "81912345678",
+        "senha": "123"
+    },
+    {
+        "nome": "Neurotech",
+        "cnpj": "98.765.432/0001-10",
+        "endereco": "Rua do Apolo, 81",
+        "email": "neurotech@gmail.com",
+        "telefone": "81987654321",
+        "senha": "123"
+    },
+    {
+        "nome": "Grupo Moura",
+        "cnpj": "44.555.666/0001-77",
+        "endereco": "Rua do Apolo, 235 - Recife Antigo",
+        "email": "mouratech@gmail.com",
+        "telefone": "81944556677",
+        "senha": "123"
+    },
+    {
+        "nome": "Tempest Security Intelligence",
+        "cnpj": "33.444.555/0001-66",
+        "endereco": "Avenida Rio Branco, 124 - Recife Antigo",
+        "email": "tempest@gmail.com",
+        "telefone": "81933445566",
+        "senha": "123"
+    },
+    {
+        "nome": "Docket",
+        "cnpj": "55.666.777/0001-88",
+        "endereco": "Rua do Bom Jesus, 45 - Recife Antigo",
+        "email": "docket@gmail.com",
+        "telefone": "81955667788",
+        "senha": "123"
+    },
+    {
+        "nome": "CESAR",
+        "cnpj": "12.345.678/9123-45",
+        "endereco": "Rua Bione, Cais do Apolo, 220 - Recife Antigo",
+        "email": "cesar@gmail.com",
+        "telefone": "(81) 91234-5678"
+    },
+    {
+        "nome": "Accenture",
+        "cnpj": "12.345.678/0001-90",
+        "endereco": "Avenida Alfredo Lisboa, 12",
+        "email": "accenture@gmail.com",
+        "telefone": "(81) 91234-5678",
+        "senha": "123"
+    },
+    {
+        "nome": "Neurotech",
+        "cnpj": "98.765.432/0001-10",
+        "endereco": "Rua do Apolo, 81",
+        "email": "neurotech@gmail.com",
+        "telefone": "(81) 98765-4321",
+        "senha": "123"
+    },
+    {
+        "nome": "Grupo Moura",
+        "cnpj": "44.555.666/0001-77",
+        "endereco": "Rua do Apolo, 235",
+        "email": "mouratech@gmail.com",
+        "telefone": "(81) 94455-6677",
+        "senha": "123"
+    },
+    {
+        "nome": "Tempest Security Intelligence",
+        "cnpj": "33.444.555/0001-66",
+        "endereco": "Avenida Rio Branco, 124 - Recife Antigo",
+        "email": "tempest@gmail.com",
+        "telefone": "(81) 93344-5566",
+        "senha": "123"
+    },
+    {
+        "nome": "Blue Technology",
+        "cnpj": "55.666.777/0001-88",
+        "endereco": "Rua Arn\u00f3bio Marques, 253",
+        "email": "bluetechnology@gmail.com",
+        "telefone": "(81) 95566-7788"
     }
 ]

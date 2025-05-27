@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiriStage | Minhas Vagas</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='assets/favicon.ico') }}" type="image/x-icon">
+</head>
+<body class="body-vertical">
+    <header class="header-horizontal">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='assets/siristage_logo.png') }}" alt="SiriStage Logo">
+        </div>
+        <nav>
+            <ul class="nav-menu">
+                <div class="nav-menu-left">
+                    <li><a href="/minhas-vagas" class="my-vacancies-btn">Minhas Vagas</a></li>
+                    <li><a href="/criar-vagas" class="create-vacancy-btn">Criar Vaga</a></li>
+                </div>
+                <li><a href="/perfil-empresa" class="enterprise-profile"><img src="{{ url_for('static', filename='assets/icon-perfil.png') }}">Perfil da Empresa</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="vacancy-list-container">
+            <div class="vacancy-list-header">
+                <p><a href="/">Home</a> • <span>Minhas Vagas</span></p>
+                <h1>Minhas Vagas</h1>
+                <h2>{{ vagas|length }} vaga(s) encontrada(s)</h2>
+            </div>
+
+            <hr>
+            
+            <div class="vacancy-list">
+                {% if vagas %}
+                {% for vaga in vagas %}
+                <div class="vacancy-item">
+                    <div class="vacancy-info">
+                        <h2>{{ vaga.titulo }}</h2>
+                        <h3>{{ vaga.empresa }}</h3>
+                        <p>{{ vaga.descricao }}</p>
+                        <div class="vacancy-details">
+                            <p><img src="{{ url_for('static', filename='assets/pin.png') }}" alt="">{{ vaga.local }}</p>
+                            <p><img src="{{ url_for('static', filename='assets/dolar.png') }}" alt="">{{ vaga.salario }}</p>
+                        </div>
+                    </div>
+                    <div class="vacancy-actions">
+                        <button class="edit-vacancy-btn" data-id="{{ vaga.id }}">Editar Vaga</button>
+                        <button class="delete-vacancy-btn" data-id="{{ vaga.id }}">Excluir Vaga</button>
+                    </div>
+                </div>
+                {% endfor %}
+                    {% else %}
+                        <p class="no-vacancies">Nenhuma vaga encontrada.</p>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.querySelectorAll('.delete-vacancy-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const id = this.dataset.id;
+
+                if (confirm('Tem certeza que deseja excluir esta vaga?')) {
+                    fetch(`/excluir-vaga`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ id: id })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.mensagem === 'Vaga excluída com sucesso!') {
+                            alert('Vaga excluída com sucesso!');
+                            window.location.reload();
+                        } else {
+                            alert(data.erro || 'Erro ao excluir a vaga. Tente novamente.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erro:', error);
+                        alert('Erro ao excluir a vaga.');
+                    });
+                }
+            });
+        });
+
+        document.querySelectorAll('.edit-vacancy-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const vagaId = this.dataset.id;
+                window.location.href = `/editar-vaga/${vagaId}`;
+            });
+        });
+
+    </script>
+</body>
+</html>

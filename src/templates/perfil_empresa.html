@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiriStage | Perfil da Empresa</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='assets/favicon.ico') }}" type="image/x-icon">
+</head>
+<body class="body-vertical">
+    <header class="header-horizontal">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='assets/siristage_logo.png') }}" alt="SiriStage Logo">
+        </div>
+        <nav>
+            <ul class="nav-menu">
+                <div class="nav-menu-left">
+                    <li><a href="/minhas-vagas" class="my-vacancies-btn">Minhas Vagas</a></li>
+                    <li><a href="/criar-vagas" class="create-vacancy-btn">Criar Vaga</a></li>
+                </div>
+                <li><a href="/perfil-empresa" class="enterprise-profile"><img src="{{ url_for('static', filename='assets/icon-perfil.png') }}">Perfil da Empresa</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div id="enterprise-profile-container">
+            <div class="enterprise-profile-container">
+                <div class="enterprise-profile-header">
+                    <h1>Perfil da Empresa</h1>
+                </div>
+                <div class="enterprise-profile-content">
+                    <div class="enterprise-profile-item">
+                        <h2>Nome da Empresa</h2>
+                        <p>{{ empresa.nome }}</p>
+                    </div>
+                    <div class="enterprise-profile-item">
+                        <h2>CNPJ</h2>
+                        <p>{{ empresa.cnpj }}</p>
+                    </div>
+                    <div class="enterprise-profile-item">
+                        <h2>Endereço</h2>
+                        <p>{{ empresa.endereco }}</p>
+                    </div>
+                    <div class="enterprise-profile-item">
+                        <h2>E-mail</h2>
+                        <p>{{ empresa.email }}</p>
+                    </div>
+                    <div class="enterprise-profile-item">
+                        <h2>Telefone</h2>
+                        <p>{{ empresa.telefone }}</p>
+                    </div>
+                </div>
+                <div class="enterprise-profile-actions">
+                    <button class="edit-enterprise-btn" id="edit-enterprise-btn">Editar Perfil</button>
+                    <button class="delete-enterprise-btn" id="delete-enterprise-btn">Excluir Perfil</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById("delete-enterprise-btn").addEventListener("click", function() {
+            if (confirm("Tem certeza de que deseja excluir esta empresa?")) {
+                fetch("/excluir-empresa", {
+                    method: "POST"
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.mensagem) {
+                        alert(data.mensagem);
+                        window.location.href = "/";
+                    } else {
+                        alert(data.error || "Erro ao excluir o perfil.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Erro:", error);
+                    alert("Erro ao excluir o perfil.");
+                });
+            }
+        });
+
+        document.getElementById("edit-enterprise-btn").addEventListener("click", function() {
+            window.location.href = "/editar-empresa";
+        });
+    </script>
+</body>
+</html>

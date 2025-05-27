@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiriStage | Perfil do Candidato</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='assets/favicon.ico') }}" type="image/x-icon">
+</head>
+<body class="body-vertical">
+    <header class="header-horizontal">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='assets/siristage_logo.png') }}" alt="SiriStage Logo">
+        </div>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="/vagas" class="create-vacancy-btn">Ver Vagas</a></li>
+                <li><a href="/perfil-candidato" class="enterprise-profile"><img src="{{ url_for('static', filename='assets/icon-perfil.png') }}">Perfil do Candidato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div id="candidate-profile-container">
+            <div class="candidate-profile-container">
+                <div class="candidate-profile-header">
+                    <h1>Perfil do Candidato</h1>
+                </div>
+                <div class="candidate-profile-content">
+                    <div class="candidate-profile-item">
+                        <h2>Nome</h2>
+                        <p>{{ candidato.nome }}</p>
+                    </div>
+                    <div class="candidate-profile-item">
+                        <h2>E-mail</h2>
+                        <p>{{ candidato.email }}</p>
+                    </div>
+                    <div class="candidate-profile-item">
+                        <h2>Telefone</h2>
+                        <p>{{ candidato.telefone }}</p>
+                    </div>
+                    <div class="candidate-profile-item">
+                        <h2>Curso</h2>
+                        <p>{{ candidato.curso }}</p>
+                    </div>
+                </div>
+                <div class="candidate-profile-actions">
+                    <button class="edit-candidate-btn">Editar Perfil</button>
+                    <button class="delete-candidate-btn" id="delete-candidate-btn">Excluir Perfil</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById("delete-candidate-btn").addEventListener("click", function() {
+            if (confirm("Tem certeza de que deseja excluir seu perfil?")) {
+                fetch("/excluir-candidato", {
+                    method: "POST"
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.mensagem) {
+                        alert(data.mensagem);
+                        window.location.href = "/";
+                    } else {
+                        alert(data.error || "Erro ao excluir o perfil.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Erro:", error);
+                    alert("Erro ao excluir o perfil.");
+                });
+            }
+        });
+
+        document.querySelector(".edit-candidate-btn").addEventListener("click", function() {
+            window.location.href = "/editar-candidato";
+        });
+    </script>
+</body>
+</html>

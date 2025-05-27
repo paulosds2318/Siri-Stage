@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SiriStage | Cadastro do Candidato</title>
     <link rel="stylesheet" href="../static/style.css">
-    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='assets/favicon.ico') }}" type="image/x-icon">
 </head>
 <body>
     <div class="left-container" id="left-container-form-page">
         <div class="header">
             <div class="logo">
-                <a href="index.html">
-                    <img src="../assets/siristage_logo.png" alt="SiriStage Logo">
+                <a href="http://127.0.0.1:5000/">
+                    <img src="{{ url_for('static', filename='assets/siristage_logo.png') }}" alt="SiriStage Logo">
                 </a>
             </div>
         </div>
@@ -23,7 +23,7 @@
         </div>
 
         <div class="image">
-            <img src="../assets/imagem001.png" alt="">
+            <img src="{{ url_for('static', filename='assets/imagem001.png') }}" alt="">
         </div>
     </div>
 
@@ -71,13 +71,67 @@
         </form>
 
         <div class="back-btn">
-            <a href="index.html">
-                <img src="../assets/left-arrow.png" alt="">
+            <a href="http://127.0.0.1:5000/">
+                <img src="{{ url_for('static', filename='assets/left-arrow.png') }}" alt="">
                 <span>Voltar</span>
             </a>
         </div>
     </div>
 
-    <script src="../static/script.js"></script>
+    <script>
+        document.getElementById("tel").addEventListener("input", function(e) {
+            let valor = e.target.value.replace(/\D/g, "");
+            if (valor.length > 11) {
+                valor = valor.slice(0, 11);
+            }
+            e.target.value = valor.replace(/(\d{2})(\d)/, "($1) $2").replace(/(\d{5})(\d)/, "$1-$2");
+        });
+
+        document.getElementById("candidate-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const form = this;
+            const senha = form.querySelector("#senha").value;
+            const senhaConfirma = form.querySelector("#senhaConfirma").value;
+            const erroSenha = form.querySelector(".erro-senha");
+
+            if (senha !== senhaConfirma) {
+                form.querySelector("#senhaConfirma").classList.add("incorreto");
+                erroSenha.style.display = 'block';
+                return;
+            } else {
+                erroSenha.style.display = 'none';
+            }
+
+            const dados = {
+                nome: form.querySelector("#name").value,
+                email: form.querySelector("#email").value,
+                telefone: form.querySelector("#tel").value,
+                curso: form.querySelector("#curso").value,
+                senha: senha
+            };
+
+            fetch("/cadastro-candidato", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(dados)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.erro) {
+                    alert(data.erro);
+                } else {
+                    alert(data.mensagem);
+                    window.location.href = "vagas";
+                }
+            })
+            .catch(error => {
+                console.error("Erro:", error);
+                alert("Erro ao cadastrar candidato.");
+            });
+        });
+    </script>
 </body>
 </html>
