@@ -25,23 +25,25 @@ O desenvolvimento foi dividido em squads, cada um responsável por uma parte do 
 
 ## 📂 Estrutura do Projeto
 
-Siri-Stage/ <br>
-├── src/ <br>
-│   ├── app.py                # Arquivo principal com as rotas Flask <br>
-│   ├── crud_candidatos.py    # Operações CRUD para candidatos <br>
-│   ├── crud_empresas.py      # Operações CRUD para empresas <br>
-│   ├── crud_vagas.py         # Operações CRUD para vagas <br>
-│   ├── static/               # Arquivos estáticos (CSS, imagens, JS) <br>
-│   └── templates/            # Arquivos HTML (páginas) <br>
-│ <br>
-├── data/                     # Arquivos JSON que armazenam os dados <br>
-│   ├── candidatos.json <br>
-│   ├── empresas.json <br>
-│   └── vagas.json <br>
-│ <br>
-├── requirements.txt          # Dependências do projeto <br>
-├── README.md                 # Documentação do projeto <br>
-└── .gitignore                # Arquivos e pastas ignorados pelo Git <br>
+```bash
+Siri-Stage/
+├── src/
+│   ├── app.py                # Arquivo principal com as rotas Flask
+│   ├── crud_candidatos.py    # Operações CRUD para candidatos
+│   ├── crud_empresas.py      # Operações CRUD para empresas
+│   ├── crud_vagas.py         # Operações CRUD para vagas
+│   ├── static/               # Arquivos estáticos (CSS, imagens, JS)
+│   └── templates/            # Arquivos HTML (páginas)
+│
+├── data/                     # Arquivos JSON que armazenam os dados
+│   ├── candidatos.json
+│   ├── empresas.json
+│   └── vagas.json
+│
+├── requirements.txt          # Dependências do projeto
+├── README.md                 # Documentação do projeto
+└── .gitignore                # Arquivos e pastas ignorados pelo Git
+```
 
 ## 💻 Como Rodar o Projeto
 
