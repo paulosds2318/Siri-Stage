@@ -1,1 +1,0 @@
-# Luiz Henrique - CRUD de Candidatos (perfil do aluno: criar/editar/excluir/ver)
