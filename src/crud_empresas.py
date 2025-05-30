@@ -2,9 +2,12 @@ import json
 from time import sleep
 import os
 
+def caminho_json():
+    return os.path.join(os.path.dirname(os.path.abspath(__file__)), 'empresas.json')
+
 def carregar_empresas():
     try:
-        with open('empresas.json', 'r', encoding='utf-8') as arq:
+        with open(caminho_json(), 'r', encoding='utf-8') as arq:
             dados = json.load(arq)
     except (FileNotFoundError, json.JSONDecodeError):
         dados = []
@@ -12,13 +15,13 @@ def carregar_empresas():
 
 def escrever_empresas(dados):
     try:
-        with open('empresas.json', 'w', encoding='utf-8') as arq:
+        with open(caminho_json(), 'w', encoding='utf-8') as arq:
             json.dump(dados, arq, indent=8, ensure_ascii=False)
     except:
         return False
     
 def criar_empresas():
-    dados_empresas = carregar_empresas()
+    dados = carregar_empresas()
 
     nome = input('Digite o nome: ')
     cnpj = input('Digite o cnpj: ')
@@ -27,51 +30,44 @@ def criar_empresas():
     contato = input('Digite o contato: ')
     senha = input('Digite o senha: ')
 
-    dados_empresas.append({'nome': nome, 'cnpj': cnpj, 'endereço': endereço, 'gmail': gmail, 'contato': contato, 'senha': senha})
+    dados.append({'nome': nome, 'cnpj': cnpj, 'endereço': endereço, 'gmail': gmail, 'contato': contato, 'senha': senha})
 
-    escrever_empresas(dados_empresas)
+    escrever_empresas(dados)
 
-    if escrever_empresas(dados_empresas) == False:
+    if escrever_empresas(dados) == False:
         print('Não foi possivel adicionar sua empresa')
     else:
         print('Empresa adicionada com sucesso!')
 
 def editar_empresas(nome):
     dados = carregar_empresas()
+    concluido = False
 
     for empresa in dados:
         if empresa['nome'] == nome:
-            print(f'Esse é o nome da sua empresa: {empresa['nome']}')
-            novo_nome = input('Digite o novo nome: ')
-            empresa['nome'] = novo_nome
+            
+            print(f'\nEssa é a empresa {empresa['nome']}:')
+            print(f'\n1. Nome: {empresa['nome']}')
+            print(f'2. Cnpj: {empresa['cnpj']}')
+            print(f'3. Endereço: {empresa['endereço']}')
+            print(f'4. Gmail: {empresa['gmail']}')
+            print(f'5. Contato: {empresa['contato']}')
+            print(f'6. Senha: {empresa['senha']}')
 
-            print(f'Esse é o cnpj da sua empresa: {empresa['cnpj']}')
-            novo_cnpj = input('Digite o novo cnpj: ')
-            empresa['cnpj'] = novo_cnpj
+            escolha_edicao = input('Escolha qual opção alterar, exemplo: "nome" ou "contato":' ).strip().lower()
 
-            print(f'Esse é o endereço da sua empresa: {empresa['endereço']}')
-            novo_endereco = input('Digite o novo endereço: ')
-            empresa['endereço'] = novo_endereco
+            for chave in empresa:
+                if escolha_edicao == chave:
+                    empresa[escolha_edicao] = input('Digite a sua alteração')
 
-            print(f'Esse é o gmail da sua empresa: {empresa['gmail']}')
-            novo_gmail = input('Digite o novo Gmail: ')
-            empresa['gmail'] = novo_gmail
-
-            print(f'Esse é o contato da sua empresa: {empresa['contato']}')
-            novo_contato = input('Digite o novo contato: ')
-            empresa['contato'] = novo_contato
-
-            print(f'Esse é a senha da sua empresa: {empresa['senha']}')
-            novo_senha = input('Digite a nova senha: ')
-            empresa['senha'] = novo_senha
-
-            escrever_empresas(dados)
-            print('Empresa atualizada com sucesso!')
-            concluido = True
-            break
-        concluido = False
+                    concluido = True
+                    escrever_empresas(dados)
+                    break
+                
     if concluido == False:
-        print('Não foi possivel encontrar sua empresa!')
+        print('Não foi possivel concluir')
+    else:
+        print('Edição concluida com sucesso!')
 
 def ver_empresas():
     dados = carregar_empresas()
