@@ -1,144 +1,60 @@
-import json
-from time import sleep
-import os
+# Pedro Vinicius e Sérgio Gonçalves - CRUD de Empresas
 
-def caminho_json():
-    return os.path.join(os.path.dirname(os.path.abspath(__file__)), 'empresas.json')
+import json # Importa o módulo JSON para manipulação de arquivos JSON
+import os # Importa o módulo OS para interações com o sistema operacional
 
-def carregar_empresas():
-    try:
-        with open(caminho_json(), 'r', encoding='utf-8') as arq:
-            dados = json.load(arq)
-    except (FileNotFoundError, json.JSONDecodeError):
-        dados = []
-    return dados
+CAMINHO = "data/empresas.json" 
 
-def escrever_empresas(dados):
-    try:
-        with open(caminho_json(), 'w', encoding='utf-8') as arq:
-            json.dump(dados, arq, indent=8, ensure_ascii=False)
-    except:
-        return False
-    
-def criar_empresas():
-    dados = carregar_empresas()
+def carregar_empresas(): # Carrega as empresas do arquivo JSON
+    if not os.path.exists(CAMINHO): # Verifica se o arquivo existe
+        return [] # Se não existir, retorna uma lista vazia
+    with open(CAMINHO, "r") as arquivo: # Abre o arquivo em modo leitura
+        return json.load(arquivo) # Carrega o conteúdo do arquivo JSON e retorna como uma lista de dicionários
 
-    nome = input('Digite o nome: ')
-    cnpj = input('Digite o cnpj: ')
-    endereço = input('Digite o endereço: ')
-    gmail = input('Digite o gmail: ')
-    contato = input('Digite o contato: ')
-    senha = input('Digite o senha: ')
+def salvar_empresas(empresas): # Salva a lista de empresas no arquivo JSON
+    with open(CAMINHO, "w") as arquivo: # Abre o arquivo em modo escrita
+        json.dump(empresas, arquivo, indent=4) # Converte a lista de empresas em JSON e escreve no arquivo com indentação de 4 espaços
 
-    dados.append({'nome': nome, 'cnpj': cnpj, 'endereço': endereço, 'gmail': gmail, 'contato': contato, 'senha': senha})
+def adicionar_empresa(empresa): # Adiciona uma nova empresa à lista de empresas
+    empresas = carregar_empresas() # Carrega as empresas existentes
+    empresas.append(empresa) # Adiciona a nova empresa à lista
+    salvar_empresas(empresas) # Salva a lista atualizada de empresas no arquivo JSON
 
-    escrever_empresas(dados)
+def listar_empresas(): # Lista todas as empresas cadastradas
+    return carregar_empresas() # Retorna a lista de empresas carregadas do arquivo JSON
 
-    if escrever_empresas(dados) == False:
-        print('Não foi possivel adicionar sua empresa')
-    else:
-        print('Empresa adicionada com sucesso!')
+def obter_empresa_por_indice(indice): # Obtém uma empresa específica pelo índice
+    empresas = carregar_empresas() # Carrega as empresas existentes
+    if 0 <= indice < len(empresas): # Verifica se o índice está dentro do intervalo válido
+        return empresas[indice] # Retorna a empresa correspondente ao índice
+    return None
 
-def editar_empresas(nome):
-    dados = carregar_empresas()
-    concluido = False
+def atualizar_empresa(indice, empresa_atualizada): # Atualiza uma empresa existente pelo índice
+    empresas = carregar_empresas() # Carrega as empresas existentes
+    if 0 <= indice < len(empresas): # Verifica se o índice está dentro do intervalo válido
+        empresas[indice] = empresa_atualizada # Atualiza a empresa no índice especificado
+        salvar_empresas(empresas) # Salva as alterações
+        return True
+    return False
 
-    for empresa in dados:
-        if empresa['nome'] == nome:
-            
-            print(f'\nEssa é a empresa {empresa['nome']}:')
-            print(f'\n1. Nome: {empresa['nome']}')
-            print(f'2. Cnpj: {empresa['cnpj']}')
-            print(f'3. Endereço: {empresa['endereço']}')
-            print(f'4. Gmail: {empresa['gmail']}')
-            print(f'5. Contato: {empresa['contato']}')
-            print(f'6. Senha: {empresa['senha']}')
+def remover_empresa(indice): # Remove uma empresa existente pelo índice
+    empresas = carregar_empresas() # Carrega as empresas existentes
+    if 0 <= indice < len(empresas): # Verifica se o índice está dentro do intervalo válido
+        empresas.pop(indice) # Remove a empresa do índice especificado
+        salvar_empresas(empresas) # Salva as alterações
+        return True
+    return False
 
-            escolha_edicao = input('Escolha qual opção alterar, exemplo: "nome" ou "contato":' ).strip().lower()
+def obter_empresa_mais_recente(): # Obtém a última empresa cadastrada
+    empresas = carregar_empresas() # Carrega as empresas existentes
+    if empresas: # Verifica se há empresas cadastradas
+        return empresas[-1] # Retorna a última empresa da lista
+    return None
 
-            for chave in empresa:
-                if escolha_edicao == chave:
-                    empresa[escolha_edicao] = input('Digite a sua alteração')
-
-                    concluido = True
-                    escrever_empresas(dados)
-                    break
-                
-    if concluido == False:
-        print('Não foi possivel concluir')
-    else:
-        print('Edição concluida com sucesso!')
-
-def ver_empresas():
-    dados = carregar_empresas()
-    concluido = False
-    for empresa in dados:
-        print(f'\nEssa é a empresa {empresa['nome']}:')
-        print(f'\nNome: {empresa['nome']}')
-        print(f'Cnpj: {empresa['cnpj']}')
-        print(f'Endereço: {empresa['endereço']}')
-        print(f'Gmail: {empresa['gmail']}')
-        print(f'Contato: {empresa['contato']}')
-        print(f'Senha: {empresa['senha']}')
-        
-        print('\nEssas são as empresas')
-
-        concluido = True
-    
-    if concluido == False:
-        print('Não tem empresas registradas')
-
-def excluir_empresas(nome):
-    dados = carregar_empresas()
-
-    for empresa in dados:
-        if empresa['nome'] == nome:
-            print(f'\nEmpresa {empresa['nome']}:')
-            print(f'Nome: {empresa['nome']}, Cnpj: {empresa['cnpj']}, Endereço: {empresa['endereço']}, Gmail: {empresa['gmail']} Contato: {empresa['contato']}, Senha: {empresa['senha']}')
-            escolha = input('\nDeseja realmente excluir essa empresa? [s/n]').lower().strip()
-
-            match escolha:
-                case 's':
-                    dados.remove(empresa)
-                    print('Empresa removida com sucesso')
-                    escrever_empresas(dados)
-                case 'n':
-                    print('Empresa não foi removida')
-            
-            concluido = True
-            break
-        concluido = False
-    if concluido == False:
-        print('Não foi possivel encontrar sua empresa!')
-
-def menu():
-    sleep(3)
-    print('\n------Empresas------')
-    print('\n 1. Ver Empresas')
-    print(' 2. Criar Empresas')
-    print(' 3. Editar Empresas')
-    print(' 4. Excluir Empresas')
-    print(' 5. Sair do Programa')
-
-def main():
-    while True:
-        menu()
-        escolha = int(input('Escolha uma das opções acima: '))
-
-        match escolha:
-            case 1:
-                ver_empresas()
-            case 2:
-                criar_empresas()
-            case 3:
-                nome = input('Digite o nome da empresa que deseja editar: ')
-                editar_empresas(nome)
-            case 4:
-                nome = input('Digite o nome da empresa que deseja excluir: ')
-                excluir_empresas(nome)
-            case 5:
-                break
-            case __:
-                print('Opção invalida!')
-
-main()
+def editar_empresa(novos_dados):
+    empresas = carregar_empresas() # Carrega as empresas
+    if empresas: # Verifica se há empresas cadastradas
+        empresas[-1] = novos_dados # Atualiza a última empresa cadastrada
+        salvar_empresas(empresas) # Salva as alterações
+        return True
+    return False

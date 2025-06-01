@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiriStage | Perfil da Empresa</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='assets/favicon.ico') }}" type="image/x-icon">
+</head>
+<body class="body-vertical">
+    <header class="header-horizontal">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='assets/siristage_logo.png') }}" alt="SiriStage Logo">
+        </div>
+        <nav>
+            <ul class="nav-menu">
+                <div class="nav-menu-left">
+                    <li><a href="/minhas-vagas" class="my-vacancies-btn">Minhas Vagas</a></li>
+                    <li><a href="/criar-vagas" class="create-vacancy-btn">Criar Vaga</a></li>
+                </div>
+                <li><a href="/perfil-empresa" class="enterprise-profile"><img src="{{ url_for('static', filename='assets/icon-perfil.png') }}">Perfil da Empresa</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div id="enterprise-edit-profile-container">
+            <div class="enterprise-profile-container">
+                <div class="enterprise-profile-header">
+                    <h1>Editar Empresa</h1>
+                </div>
+                <form method="post" class="enterprise-profile-content">
+                    <div class="enterprise-profile-item">
+                        <h2>Nome da Empresa</h2>
+                        <input type="text" name="nome" value="{{ empresa.nome }}"/>
+                    </div>
+                    <div class="enterprise-profile-item">
+                        <h2>CNPJ</h2>
+                        <input type="text" name="cnpj" value="{{ empresa.cnpj }}"/>
+                    </div>
+                    <div class="enterprise-profile-item">
+                        <h2>Endereço</h2>
+                        <input type="text" name="endereco" value="{{ empresa.endereco }}"/>
+                    </div>
+                    <div class="enterprise-profile-item">
+                        <h2>E-mail</h2>
+                        <input type="email" name="email" value="{{ empresa.email }}"/>
+                    </div>
+                    <div class="enterprise-profile-item">
+                        <h2>Telefone</h2>
+                        <input type="tel" name="telefone" value="{{ empresa.telefone }}"/>
+                    </div>
+                    <button type="submit" class="save-edits-btn">Salvar Alterações</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        
+    </script>
+</body>
+</html>
