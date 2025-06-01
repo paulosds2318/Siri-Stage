@@ -1,3 +1,27 @@
+# Paulo Marrocos e Cauã dos Santos - CRUD de Vagas
+
+import json
+import os
+import uuid
+
+CAMINHO = "data/vagas.json"
+
+def carregar_vagas(): # Carrega as vagas do arquivo JSON
+    if not os.path.exists(CAMINHO): # Verifica se o arquivo existe
+        return [] # Se não existir, retorna uma lista vazia
+    with open(CAMINHO, "r") as arquivo: # Abre o arquivo em modo leitura
+        return json.load(arquivo) # Carrega o conteúdo do arquivo JSON e retorna como uma lista de dicionários
+
+def salvar_vagas(vagas): # Salva a lista de vagas no arquivo JSON
+    with open(CAMINHO, "w") as arquivo: # Abre o arquivo em modo escrita
+        json.dump(vagas, arquivo, indent=4) # Converte a lista de vagas em JSON e escreve no arquivo com indentação de 4 espaços
+
+def adicionar_vaga(vaga): # Adiciona uma nova vaga à lista de vagas
+    vagas = carregar_vagas() # Carrega as vagas existentes
+    vaga["id"] = str(uuid.uuid4())  # Gera um ID único para a vaga
+    vagas.append(vaga) # Adiciona a nova vaga à lista
+    salvar_vagas(vagas) # Salva a lista atualizada de vagas no arquivo JSON
+
 def listar_vagas(): # Lista todas as vagas cadastradas
     return carregar_vagas() # Retorna a lista de vagas carregadas do arquivo JSON
 
